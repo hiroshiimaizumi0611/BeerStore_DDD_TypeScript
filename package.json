@@ -1,0 +1,21 @@
+{
+  "name": "beerstore_ddd_typescript",
+  "version": "1.0.0",
+  "description": "![beer_store_logo](https://github.com/hiroshiimaizumi0611/BeerStore_DDD_TypeScript/assets/114396330/de3ec100-ede3-4379-9d06-0cc085d6dac2)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.15",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.3"
+  }
+}
