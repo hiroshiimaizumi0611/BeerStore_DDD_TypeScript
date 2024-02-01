@@ -1,0 +1,27 @@
+@startuml Stock
+
+!include ./Status.pu
+!include ./Quantity.pu
+!include ./StockId.pu
+!include ../BeerId/BeerId.pu
+
+class "Stock(在庫)" as Stock << (E,green) Entity >> {
+    StockId: StockId
+    Quantity: 在庫数
+    Status: ステータス
+    BeerId: BeerId
+}
+
+Stock *-down- StockId
+Stock *-down- Quantity
+Stock *-down- Status
+Stock *-down- BeerId
+
+note bottom of Stock
+    - 初回作成時、ステータスは「在庫切れ」から始まる。
+    - 在庫数0 = 在庫切れ。
+    - 在庫数10以下 = 残りわずか。
+    - それ以外は在庫あり。
+end note
+
+@enduml

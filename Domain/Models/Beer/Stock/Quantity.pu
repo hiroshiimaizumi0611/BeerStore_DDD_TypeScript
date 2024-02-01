@@ -1,0 +1,12 @@
+@startuml Quantity
+
+class "Quantity(在庫数)" as Quantity {
+    + value: number
+}
+
+note bottom of Quantity
+    MAX = 1,000,00
+    MIN = 1
+end note
+
+@enduml

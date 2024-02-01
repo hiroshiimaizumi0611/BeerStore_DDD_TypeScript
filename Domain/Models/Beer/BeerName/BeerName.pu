@@ -1,0 +1,12 @@
+@startuml BeerName
+
+class "BeerName(ビール名)" as BeerName {
+    + value: string
+}
+
+note bottom of BeerName
+    MAX_LENGTH = 1000
+    MIN_LENGTH = 1
+end note
+
+@enduml

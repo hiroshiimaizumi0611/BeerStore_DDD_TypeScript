@@ -1,0 +1,11 @@
+@startuml BeerId
+
+class "BeerId" as BeerId {
+    + value: string
+}
+
+note bottom of BeerId
+    ビールごとに付与される番号。
+end note
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml BeerAggregation
+
+title ビール集約 (Beer Aggregation)
+
+package "ビール集約(BeerAggregation)" {
+    !include ./Beer.pu
+    !include ./Stock/Stock.pu
+
+    Beer "1" -down- "1" Stock : has >
+}
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml Beer
+
+!include ./BeerId/BeerId.pu
+!include ./BeerName/BeerName.pu
+!include ./Price/Price.pu
+
+class "Beer(ビール)" as Beer << (R,red) RootEntity >> {
+    BeerId: BeerId
+    BeerName: ビール名
+    Price: 価格
+}
+
+Beer *-down- BeerId
+Beer *-down- BeerName
+Beer *-down- Price
+
+@enduml

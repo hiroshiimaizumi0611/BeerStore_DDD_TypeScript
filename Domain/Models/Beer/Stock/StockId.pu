@@ -1,0 +1,10 @@
+@startuml StockId
+
+class "StockId" as StockId {
+    + value: string
+}
+note bottom of StockId
+    - nanoId
+end note
+
+@enduml
