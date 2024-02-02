@@ -27,11 +27,11 @@ export default class Price extends ValueObject<PriceProps, 'Price'> {
     }
   }
 
-  get amount(): PriceProps['amount'] {
-    return this._value.amount
+  get getAmount(): PriceProps['amount'] {
+    return this.value.amount
   }
 
-  get currency(): PriceProps['currency'] {
-    return this._value.currency
+  get getCurrency(): PriceProps['currency'] {
+    return this.value.currency
   }
 }

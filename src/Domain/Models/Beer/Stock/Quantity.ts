@@ -17,13 +17,13 @@ export class Quantity extends ValueObject<number, 'Quantity'> {
   }
 
   increment(amount: number): Quantity {
-    const newValue = this._value + amount
+    const newValue = this.value + amount
     this.validate(newValue)
     return new Quantity(newValue)
   }
 
   decrement(amount: number): Quantity {
-    const newValue = this._value - amount
+    const newValue = this.value - amount
     this.validate(newValue)
     return new Quantity(newValue)
   }

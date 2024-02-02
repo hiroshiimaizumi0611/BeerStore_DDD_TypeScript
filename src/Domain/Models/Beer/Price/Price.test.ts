@@ -4,8 +4,8 @@ describe('Price', () => {
   it('Priceを作成できること', () => {
     const amount = 10000
     const price = new Price({ amount, currency: 'JPY' })
-    expect(price.amount).toBe(amount)
-    expect(price.currency).toBe('JPY')
+    expect(price.getAmount).toBe(amount)
+    expect(price.getCurrency).toBe('JPY')
   })
 
   it('無効な通貨コードの場合エラーを投げる', () => {

@@ -2,7 +2,7 @@ import BeerId from './BeerId'
 
 describe('BeerId', () => {
   test('', () => {
-    expect(new BeerId('Beer_20240202').value).toBe('Beer_20240202')
+    expect(new BeerId('Beer_20240202').getValue).toBe('Beer_20240202')
   })
 
   test('equals', () => {
