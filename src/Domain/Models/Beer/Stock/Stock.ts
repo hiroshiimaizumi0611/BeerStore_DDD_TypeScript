@@ -68,7 +68,6 @@ export class Stock {
       this.updateStatus(new Status(StatusEnum.LowStock))
     }
 
-    // 在庫数が0になったらステータスを在庫切れにする
     if (newQuantity === 0) {
       this.updateStatus(new Status(StatusEnum.OutOfStock))
     }
