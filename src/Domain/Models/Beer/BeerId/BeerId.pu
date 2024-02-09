@@ -6,6 +6,8 @@ class "BeerId" as BeerId {
 
 note bottom of BeerId
     ビールごとに付与される番号。
+    Beerから始まる文字列と数字の組み合わせ。
+    ex) Beer_2024020400
 end note
 
 @enduml
