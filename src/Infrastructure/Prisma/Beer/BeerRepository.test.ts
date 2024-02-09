@@ -4,6 +4,7 @@ import BeerId from 'Domain/Models/Beer/BeerId/BeerId'
 import { BeerName } from 'Domain/Models/Beer/BeerName/BeerName'
 import Price from 'Domain/Models/Beer/Price/Price'
 import { BeerRepository } from './BeerRepository'
+import { PrismaClientManager } from '../PrismaClientManager'
 
 const prisma = new PrismaClient()
 
@@ -13,7 +14,8 @@ describe('BeerRepository', () => {
     await prisma.$disconnect()
   })
 
-  const repository = new BeerRepository()
+  const clientManager = new PrismaClientManager;
+  const repository = new BeerRepository(clientManager)
 
   test('save and find', async () => {
     const beer = Beer.create(

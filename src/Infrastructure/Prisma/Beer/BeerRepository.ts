@@ -1,4 +1,4 @@
-import { $Enums, PrismaClient } from '@prisma/client'
+import { $Enums } from '@prisma/client'
 import { Beer } from 'Domain/Models/Beer/Beer'
 import BeerId from 'Domain/Models/Beer/BeerId/BeerId'
 import { BeerName } from 'Domain/Models/Beer/BeerName/BeerName'
@@ -8,12 +8,13 @@ import { Quantity } from 'Domain/Models/Beer/Stock/Quantity'
 import { Status, StatusEnum } from 'Domain/Models/Beer/Stock/Status'
 import { Stock } from 'Domain/Models/Beer/Stock/Stock'
 import { StockId } from 'Domain/Models/Beer/Stock/StockId'
-
-const prisma = new PrismaClient()
+import { PrismaClientManager } from '../PrismaClientManager'
 
 export class BeerRepository implements IBeerRepository {
+  constructor(private clientManager: PrismaClientManager) {}
+
   async save(beer: Beer): Promise<void> {
-    await prisma.beer.create({
+    await this.clientManager.getClient().beer.create({
       data: {
         beerId: beer.getBeerId.getValue,
         beerName: beer.getBeerName.getValue,
@@ -30,7 +31,7 @@ export class BeerRepository implements IBeerRepository {
   }
 
   async update(beer: Beer): Promise<void> {
-    await prisma.beer.update({
+    await this.clientManager.getClient().beer.update({
       where: { beerId: beer.getBeerId.getValue },
       data: {
         beerName: beer.getBeerName.getValue,
@@ -46,11 +47,13 @@ export class BeerRepository implements IBeerRepository {
   }
 
   async delete(beerId: BeerId): Promise<void> {
-    await prisma.beer.delete({ where: { beerId: beerId.getValue } })
+    await this.clientManager
+      .getClient()
+      .beer.delete({ where: { beerId: beerId.getValue } })
   }
 
   async find(beerId: BeerId): Promise<Beer | null> {
-    const beer = await prisma.beer.findUnique({
+    const beer = await this.clientManager.getClient().beer.findUnique({
       where: { beerId: beerId.getValue },
       include: { stock: true },
     })
