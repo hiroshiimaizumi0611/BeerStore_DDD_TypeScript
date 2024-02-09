@@ -24,12 +24,12 @@ describe('BeerRepository', () => {
     await repository.save(beer)
 
     const entity = await repository.find(beer.getBeerId)
-    expect(entity?.getBeerId.getValue).toBe(beer.getBeerId)
-    expect(entity?.getBeerName.getValue).toBe(beer.getBeerName)
+    expect(entity?.getBeerId.getValue).toBe(beer.getBeerId.getValue)
+    expect(entity?.getBeerName.getValue).toBe(beer.getBeerName.getValue)
     expect(entity?.getPrice.getAmount).toBe(beer.getPrice.getAmount)
-    expect(entity?.getStockId.getValue).toBe(beer.getStockId)
-    expect(entity?.getQuantity.getValue).toBe(beer.getQuantity)
-    expect(entity?.getStatus.getValue).toBe(beer.getStatus)
+    expect(entity?.getStockId.getValue).toBe(beer.getStockId.getValue)
+    expect(entity?.getQuantity.getValue).toBe(beer.getQuantity.getValue)
+    expect(entity?.getStatus.getValue).toBe(beer.getStatus.getValue)
   })
 
   // to be continued...
