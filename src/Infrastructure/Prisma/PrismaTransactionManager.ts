@@ -1,4 +1,4 @@
-import { ITransactionManager } from 'Application/common/ITransactionManager'
+import { ITransactionManager } from 'UseCase/common/ITransactionManager'
 import { PrismaClientManager } from './PrismaClientManager'
 import prisma from './prismaClient'
 
