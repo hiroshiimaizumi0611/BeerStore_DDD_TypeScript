@@ -23,6 +23,9 @@ export class InMemoryBeerRepository implements IBeerRepository {
     const beer = Object.entries(this.DB).find(([id]) => {
       return beerId.getValue === id.toString()
     })
+    console.log(this.DB)
+    console.log(beer)
+
 
     return beer ? beer[1] : null
   }
