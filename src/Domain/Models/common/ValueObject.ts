@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash'
 
 export abstract class ValueObject<T, U> {
-  // @ts-expect-error
+  // @ts-expect-error: To prevent type confusion due to structural typing, this is introduced. Although it's not actually used, it's necessary for distinguishing types.
   private type: U
   protected readonly value: T
 

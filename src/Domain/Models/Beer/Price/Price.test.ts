@@ -12,7 +12,7 @@ describe('Price', () => {
     const amount = 10000
     const currency = 'USD'
     expect(() => {
-      // @ts-expect-error
+      // @ts-expect-error: test for invalid currency
       new Price({ amount, currency })
     }).toThrow('Invalid currency: only JPY is accepted for the Price object.')
   })

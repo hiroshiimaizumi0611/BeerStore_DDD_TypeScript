@@ -5,7 +5,7 @@ import {
   RegisterBeerCommand,
   RegisterBeerUseCase,
 } from 'UseCase/Beer/RegisterBeerUseCase/RegisterBeerUseCase'
-import express from 'express'
+import express, { json } from 'express'
 
 const app = express()
 const port = 3000
@@ -18,7 +18,7 @@ app.listen(port, () => {
   console.log(`app listening on port ${port}`)
 })
 
-app.use(express.json())
+app.use(json())
 
 app.post('/beer', async (req, res) => {
   try {
