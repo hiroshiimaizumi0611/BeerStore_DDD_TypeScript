@@ -5,6 +5,7 @@ import { BeerName } from 'Domain/Models/Beer/BeerName/BeerName'
 import { IBeerRepository } from 'Domain/Models/Beer/IBeerRepository'
 import Price from 'Domain/Models/Beer/Price/Price'
 import { ITransactionManager } from 'UseCase/common/ITransactionManager'
+import { inject, injectable } from 'tsyringe'
 
 export type RegisterBeerCommand = {
   beerId: string
@@ -12,9 +13,12 @@ export type RegisterBeerCommand = {
   priceAmount: number
 }
 
+@injectable()
 export class RegisterBeerUseCase {
   constructor(
+    @inject('IBeerRepository')
     private beerRepository: IBeerRepository,
+    @inject('ITransactionManager')
     private transactionManager: ITransactionManager,
   ) {}
 

@@ -1,11 +1,9 @@
-import { BeerRepository } from 'Infrastructure/Prisma/Beer/BeerRepository'
-import { PrismaClientManager } from 'Infrastructure/Prisma/PrismaClientManager'
-import { PrismaTransactionManager } from 'Infrastructure/Prisma/PrismaTransactionManager'
 import {
   RegisterBeerCommand,
   RegisterBeerUseCase,
 } from 'UseCase/Beer/RegisterBeerUseCase/RegisterBeerUseCase'
 import express, { json } from 'express'
+import { container } from 'tsyringe'
 
 const app = express()
 const port = 3000
@@ -28,16 +26,10 @@ app.post('/beer', async (req, res) => {
       priceAmount: number
     }
 
-    const prismaManager = new PrismaClientManager()
-    const transactionManager = new PrismaTransactionManager(prismaManager)
-    const repository = new BeerRepository(prismaManager)
-    const redisterUseCase = new RegisterBeerUseCase(
-      repository,
-      transactionManager,
-    )
+    const registerUseCase = container.resolve(RegisterBeerUseCase)
 
     const command: RegisterBeerCommand = body
-    await redisterUseCase.execute(command)
+    await registerUseCase.execute(command)
 
     res.status(200).json({ message: 'success' })
   } catch (error) {

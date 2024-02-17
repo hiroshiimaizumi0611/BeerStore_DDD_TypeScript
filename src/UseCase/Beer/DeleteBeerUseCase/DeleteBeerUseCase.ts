@@ -1,14 +1,18 @@
 import BeerId from 'Domain/Models/Beer/BeerId/BeerId'
 import { IBeerRepository } from 'Domain/Models/Beer/IBeerRepository'
 import { ITransactionManager } from 'UseCase/common/ITransactionManager'
+import { inject, injectable } from 'tsyringe'
 
 export type DeleteBeerCommand = {
   beerId: string
 }
 
+@injectable()
 export class DeleteBeerUseCase {
   constructor(
+    @inject('IBeerRepository')
     private beerRepository: IBeerRepository,
+    @inject('ITransactionManager')
     private transactionManager: ITransactionManager,
   ) {}
 

@@ -9,9 +9,13 @@ import { Status, StatusEnum } from 'Domain/Models/Beer/Stock/Status'
 import { Stock } from 'Domain/Models/Beer/Stock/Stock'
 import { StockId } from 'Domain/Models/Beer/Stock/StockId'
 import { PrismaClientManager } from '../PrismaClientManager'
+import { inject, injectable } from 'tsyringe'
 
+@injectable()
 export class BeerRepository implements IBeerRepository {
-  constructor(private clientManager: PrismaClientManager) {}
+  constructor(
+    @inject('IDataAccessClientManager')
+    private clientManager: PrismaClientManager) {}
 
   async save(beer: Beer): Promise<void> {
     await this.clientManager.getClient().beer.create({
