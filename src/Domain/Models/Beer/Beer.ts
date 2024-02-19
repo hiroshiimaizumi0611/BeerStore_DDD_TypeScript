@@ -1,19 +1,31 @@
+import { DomainEventStorable } from 'Domain/common/DomainEvent/DomainEventStorable'
 import BeerId from './BeerId/BeerId'
 import { BeerName } from './BeerName/BeerName'
 import Price from './Price/Price'
 import { StatusEnum } from './Stock/Status'
 import { Stock } from './Stock/Stock'
+import {
+  BEER_EVENT_NAME,
+  BeerDomainEventFactory,
+} from 'Domain/common/DomainEvent/Beer/BeerDomainEventFactory'
 
-export class Beer {
+export class Beer extends DomainEventStorable {
   private constructor(
     private readonly beerId: BeerId,
     private beerName: BeerName,
     private price: Price,
     private readonly stock: Stock,
-  ) {}
+  ) {
+    super()
+  }
 
   static create(beerId: BeerId, beerName: BeerName, price: Price) {
-    return new Beer(beerId, beerName, price, Stock.create())
+    const beer = new Beer(beerId, beerName, price, Stock.create())
+    beer.addDomainevent(
+      new BeerDomainEventFactory(beer).createEvent(BEER_EVENT_NAME.CREATED),
+    )
+
+    return beer
   }
 
   static reconstruct(

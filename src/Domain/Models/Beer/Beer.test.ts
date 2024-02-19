@@ -6,6 +6,7 @@ import { Quantity } from './Stock/Quantity'
 import { Status, StatusEnum } from './Stock/Status'
 import { Stock } from './Stock/Stock'
 import { StockId } from './Stock/StockId'
+import { BEER_EVENT_NAME } from 'Domain/common/DomainEvent/Beer/BeerDomainEventFactory'
 
 describe('Book', () => {
   const stockId = new StockId()
@@ -18,6 +19,13 @@ describe('Book', () => {
   const price = new Price({
     amount: 1000,
     currency: 'JPY',
+  })
+
+  describe('create', () => {
+    it('ドメインイベントが生成されていること', () => {
+      const beer = Beer.create(beerId, beerName, price)
+      expect(beer.getDomainEvents()[0].eventName).toBe(BEER_EVENT_NAME.CREATED)
+    })
   })
 
   describe('incrementStock', () => {
