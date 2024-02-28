@@ -39,6 +39,9 @@ export class Beer extends DomainEventStorable {
 
   delete() {
     this.stock.delete()
+    this.addDomainevent(
+      new BeerDomainEventFactory(this).createEvent(BEER_EVENT_NAME.DELETED),
+    )
   }
 
   updateBeerName(beerName: BeerName) {
@@ -62,6 +65,12 @@ export class Beer extends DomainEventStorable {
 
   decrementStock(amount: number) {
     this.stock.decrementQuantity(amount)
+
+    if (this.getStatus.getValue === StatusEnum.OutOfStock) {
+      this.addDomainevent(
+        new BeerDomainEventFactory(this).createEvent(BEER_EVENT_NAME.DELETED),
+      )
+    }
   }
 
   get getBeerId(): BeerId {
