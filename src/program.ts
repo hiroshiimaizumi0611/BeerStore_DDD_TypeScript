@@ -1,3 +1,5 @@
+import { DomainEventPublisher } from 'Infrastructure/DomainEvent/EventEmitter/DomainEventPublisher'
+import { DomainEvenSubscriber } from 'Infrastructure/DomainEvent/EventEmitter/DomainEventSubscriber'
 import { BeerRepository } from 'Infrastructure/Prisma/Beer/BeerRepository'
 import { PrismaClientManager } from 'Infrastructure/Prisma/PrismaClientManager'
 import { PrismaTransactionManager } from 'Infrastructure/Prisma/PrismaTransactionManager'
@@ -18,3 +20,11 @@ container.register(
   },
   { lifecycle: Lifecycle.ResolutionScoped },
 )
+
+container.register('IDomainEventPublisher', {
+  useClass: DomainEventPublisher,
+})
+
+container.register('IDomainEventSubscriber', {
+  useClass: DomainEvenSubscriber,
+})
